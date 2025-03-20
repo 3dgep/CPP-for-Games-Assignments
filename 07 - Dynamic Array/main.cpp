@@ -9,7 +9,7 @@ void clearInput()
 
 void pause()
 {
-    std::cout << "Press enter to continue..." << std::endl;
+    std::cout << "Press enter to continue...";
     clearInput();
     std::cin.get();
 }

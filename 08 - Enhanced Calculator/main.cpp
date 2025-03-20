@@ -16,7 +16,7 @@ void pause()
 double readNumber()
 {
     double value;
-    std::cout << "Enter a number:" << std::endl;
+    std::cout << "Enter a number: ";
 
     std::cin >> value;
 
@@ -26,7 +26,7 @@ double readNumber()
 
         clearInput();
 
-        std::cout << "Enter a number:" << std::endl;
+        std::cout << "Enter a number: ";
         std::cin >> value;
     }
 
@@ -36,16 +36,16 @@ double readNumber()
 char readOperator()
 {
     char op;
-    std::cout << "Enter an operator (+, -, *, /):" << std::endl;
+    std::cout << "Enter an operator (+, -, *, /, %, ^): ";
     std::cin >> op;
 
-    while (op != '+' && op != '-' && op != '*' && op != '/')
+    while (op != '+' && op != '-' && op != '*' && op != '/' && op != '%' && op != '^')
     {
-        std::cout << "ERROR: Expected an operator (+, -, *, /)!" << std::endl;
+        std::cout << "ERROR: Expected an operator (+, -, *, /, %, ^)!" << std::endl;
 
         clearInput();
 
-        std::cout << "Enter an operator (+, -, *, /):" << std::endl;
+        std::cout << "Enter an operator (+, -, *, /, %, ^): ";
         std::cin >> op;
     }
 
@@ -64,6 +64,10 @@ double evaluate(double lhs, char op, double rhs)
         return lhs * rhs;
     case '/':
         return lhs / rhs;
+    case '%':
+        return std::fmod(lhs, rhs);
+    case '^':
+        return std::pow(lhs, rhs);
     }
 
     return 0;
@@ -75,7 +79,7 @@ int main()
     char op = readOperator();
     double rhs = readNumber();
 
-    while (op == '/' && rhs == 0.0)
+    while (op == '/' || op == '%' && rhs == 0.0)
     {
         std::cout << "ERROR: Cannot divide by 0!" << std::endl;
         rhs = readNumber();
