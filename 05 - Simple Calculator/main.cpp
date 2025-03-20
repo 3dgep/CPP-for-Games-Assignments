@@ -6,6 +6,13 @@ void clearInput()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+void pause()
+{
+    std::cout << "Press enter to continue..." << std::endl;
+    clearInput();
+    std::cin.get();
+}
+
 double readNumber()
 {
     double value;
@@ -64,13 +71,6 @@ double evaluate(double lhs, char op, double rhs)
     }
 
     return 0;
-}
-
-void pause()
-{
-    std::cout << "Press enter to continue..." << std::endl;
-    clearInput();
-    std::cin.get();
 }
 
 int main()
